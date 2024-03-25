@@ -1,0 +1,9 @@
+
+
+ - comments
+ - requirements for installation
+ - NoiseStudy
+ - Export in CSV (selected) clusters [or pixels]
+ - Plot (img) cluster
+ - Save binary data ?
+ - Fit of maps
