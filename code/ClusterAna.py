@@ -3,9 +3,17 @@ import math as m
 from code.Cluster import *
 
 class ClusterAna:
-    def __init__(self, planes = [1], largeSize = 20, xref = 460, yref = 460):
-        """
-        assume that root color = plane number
+    """
+    Class ClusterAna produced ROOT histograms for cluster analysis
+    """
+
+    def __init__(self, planes = [1], largeSize = 20, xref = 464, yref = 480):
+        """ Constructor
+        :param list[int] planes: list of planes (1,2,3 or 4)
+        :param int largeSize: threshold to define what is a large cluster
+        :param int xref: x-center of sensor plane
+        :param int yref: y-center of the sensor plane
+        Remark: assume that root color plots = plane number
         """
         self.largeSize = largeSize
         self.xref = xref
@@ -42,6 +50,11 @@ class ClusterAna:
             self.hLength[plane].SetLineColor(plane)
 
     def fill(self,plane, cluster):
+        """
+        Fill one cluster for a givne plane
+        :param int plane: value of 1,2,3 or 4
+        :param Cluster cluster: fill a given cluster
+        """
         if not self.check(plane): return False
         self.hSize[plane].Fill(cluster.size())
         #print(self.hSize[plane].GetEntries(),plane)
@@ -57,6 +70,11 @@ class ClusterAna:
         return True
 
     def fillMany(self, plane, clusters):
+        """
+        Fill many clusters for a givne plane
+        :param int plane: value of 1,2,3 or 4
+        :param list[Clusters] clusters: fill a list of cluster
+        """
         if not self.check(plane): return False
         for cluster in clusters:
             self.fill(plane,cluster)
@@ -64,6 +82,10 @@ class ClusterAna:
 
 
     def draw(self, export=False):
+        """
+        Draw TCanvas
+        :param bool export: if export is True, create 2 png file (ClusterSize.png and LargeClusterProperties.png")
+        """
         self.cSize.Divide(2,2)
         self.cLarge.Divide(2,2)
        
@@ -100,6 +122,10 @@ class ClusterAna:
 
 
     def write(self,ofilename="clusterAna.root"):
+        """
+        Save info in a root file
+        :param str ofilename: name of the exported root file
+        """
         rfile = TFile(ofilename,"RECREATE")
         rfile.cd()
         for plane in self.planes:
@@ -116,6 +142,9 @@ class ClusterAna:
         rfile.Close()
 
     def check(self,plane):
+        """
+        Function of internal use. Check if the plane is found
+        """
         if plane not in self.planes:
             print("this plane number is not found:", plane)
             return False

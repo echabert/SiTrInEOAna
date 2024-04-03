@@ -17,19 +17,41 @@ import numpy as np
 
 
 def all_equal(iterable):
+    """
+    Check if all elements are the same in an iterable
+    :returns True/False
+    """
     g = groupby(iterable)
     return next(g, True) and not next(g, False)
 
 def distance(pixel1,pixel2):
+    """
+    Return the distance between 2 pixels
+    :rtype: float
+    """
     return  m.sqrt(m.pow(pixel1[0]-pixel2[0],2)+m.pow(pixel1[1]-pixel2[1],2))
 
 def IsNeighbour(pixel1,pixel2):
+    """
+    Check if two pixels are neighbours
+    :rtype: bool
+    """
     if distance(pixel1,pixel2) <=1: return True
     return False
 
 
 class Cluster:
+    """
+    Class Cluster define a cluster with a list of pixels.
+    A barycenter is computed.
+    Several variables are computed to characterize the shape of the cluster
+    """
+
     def __init__(self,pixels=[]):
+        """
+        Constructor
+        :param list pixels: list of pixels constituting the pixel
+        """
         self.pixels=pixels
         self.pixels.sort() #pixels are sorted !
         self.barycenter = (0,0)
@@ -53,9 +75,17 @@ class Cluster:
         
 
     def barycenter(self):
+        """
+        Return the barycenter
+        :rtype: (float,float)
+        """
         return self.barycenter
 
     def size(self):
+        """
+        Size is the number of pixels
+        :rtype: int
+        """
         return len(self.pixels)
 
     def isAligned(self):
@@ -66,6 +96,10 @@ class Cluster:
 
 
     def maxDistance(self):
+        """
+        Maximal distance between all pairs of pixels
+        :rtype: float
+        """
         self.lenght = 0
         for i in self.pixels:
             for j in self.pixels:
@@ -75,6 +109,9 @@ class Cluster:
 
 
     def secondMoment(self):
+        """
+        Compute the moments
+        """
         self.Ix = 0
         self.Iy = 0
         self.Ixy = 0
@@ -89,9 +126,15 @@ class Cluster:
             self.Iyp = self.Iy*m.sin(self.Theta)**2+self.Iy*m.cos(self.Theta)**2+self.Ixy*m.sin(2*self.Theta)**2
 
     def getMoment(self):
-         print("Angle of principal axis:",self.Theta," Ixp = ",self.Ixp, " Iyp = ",self.Iyp)
+        """
+        Print info about the moments"
+        """
+        print("Angle of principal axis:",self.Theta," Ixp = ",self.Ixp, " Iyp = ",self.Iyp)
 
     def plot(self):
+       """
+       Plot the shape of the cluster using matplotlib.
+       """
        if not self.pixels: return
        #define ranges
        xmin = min([p[0] for p in self.pixels])-1
@@ -116,6 +159,10 @@ class Cluster:
 
 
 def Clusterizer(pixels):
+  """
+  The algorithm run other a list of pixels. It returns a list of list.
+  Each element of this main list if a list of neighbour pixels that can be used to build a Cluster object
+  """
   clusters = []
   for pixel in pixels:
       if len(clusters)==0: 
