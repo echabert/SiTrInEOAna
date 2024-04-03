@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>code package &mdash; SiTrInEOAna 1.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="code" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SiTrInEOAna
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">code</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">code package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-code.Cluster">code.Cluster module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-code.ClusterAna">code.ClusterAna module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-code.Maps">code.Maps module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-code.NoiseAna">code.NoiseAna module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-code.Reader">code.Reader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-code">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SiTrInEOAna</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">code</a></li>
+      <li class="breadcrumb-item active">code package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/code.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="code-package">
+<h1>code package<a class="headerlink" href="#code-package" title="Permalink to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading"></a></h2>
+</section>
+<section id="module-code.Cluster">
+<span id="code-cluster-module"></span><h2>code.Cluster module<a class="headerlink" href="#module-code.Cluster" title="Permalink to this heading"></a></h2>
+<dl class="simple">
+<dt>Classes:</dt><dd><ul class="simple">
+<li><p>Cluster: defined based on a list of pixels a cluster (size &amp; barycenter)</p></li>
+</ul>
+</dd>
+<dt>Functions:</dt><dd><ul class="simple">
+<li><p>Clusterizer: return a list of clusters based on a list of pixels within a plane</p></li>
+<li><p>all_equal and IsNeighbour: for internal use</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="code.Cluster.Cluster">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.Cluster.</span></span><span class="sig-name descname"><span class="pre">Cluster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Cluster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Cluster" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class Cluster define a cluster with a list of pixels.
+A barycenter is computed.
+Several variables are computed to characterize the shape of the cluster</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Cluster.Cluster.barycenter">
+<span class="sig-name descname"><span class="pre">barycenter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Cluster.barycenter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Cluster.barycenter" title="Permalink to this definition"></a></dt>
+<dd><p>Return the barycenter
+:rtype: (float,float)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Cluster.Cluster.getMoment">
+<span class="sig-name descname"><span class="pre">getMoment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Cluster.getMoment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Cluster.getMoment" title="Permalink to this definition"></a></dt>
+<dd><p>Print info about the moments”</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Cluster.Cluster.isAligned">
+<span class="sig-name descname"><span class="pre">isAligned</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Cluster.isAligned"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Cluster.isAligned" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Cluster.Cluster.maxDistance">
+<span class="sig-name descname"><span class="pre">maxDistance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Cluster.maxDistance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Cluster.maxDistance" title="Permalink to this definition"></a></dt>
+<dd><p>Maximal distance between all pairs of pixels
+:rtype: float</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Cluster.Cluster.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Cluster.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Cluster.plot" title="Permalink to this definition"></a></dt>
+<dd><p>Plot the shape of the cluster using matplotlib.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Cluster.Cluster.secondMoment">
+<span class="sig-name descname"><span class="pre">secondMoment</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Cluster.secondMoment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Cluster.secondMoment" title="Permalink to this definition"></a></dt>
+<dd><p>Compute the moments</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Cluster.Cluster.size">
+<span class="sig-name descname"><span class="pre">size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Cluster.size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Cluster.size" title="Permalink to this definition"></a></dt>
+<dd><p>Size is the number of pixels
+:rtype: int</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="code.Cluster.Clusterizer">
+<span class="sig-prename descclassname"><span class="pre">code.Cluster.</span></span><span class="sig-name descname"><span class="pre">Clusterizer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#Clusterizer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.Clusterizer" title="Permalink to this definition"></a></dt>
+<dd><p>The algorithm run other a list of pixels. It returns a list of list.
+Each element of this main list if a list of neighbour pixels that can be used to build a Cluster object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="code.Cluster.IsNeighbour">
+<span class="sig-prename descclassname"><span class="pre">code.Cluster.</span></span><span class="sig-name descname"><span class="pre">IsNeighbour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixel1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#IsNeighbour"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.IsNeighbour" title="Permalink to this definition"></a></dt>
+<dd><p>Check if two pixels are neighbours
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="code.Cluster.all_equal">
+<span class="sig-prename descclassname"><span class="pre">code.Cluster.</span></span><span class="sig-name descname"><span class="pre">all_equal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#all_equal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.all_equal" title="Permalink to this definition"></a></dt>
+<dd><p>Check if all elements are the same in an iterable
+:returns True/False</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="code.Cluster.distance">
+<span class="sig-prename descclassname"><span class="pre">code.Cluster.</span></span><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixel1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Cluster.html#distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Cluster.distance" title="Permalink to this definition"></a></dt>
+<dd><p>Return the distance between 2 pixels
+:rtype: float</p>
+</dd></dl>
+
+</section>
+<section id="module-code.ClusterAna">
+<span id="code-clusterana-module"></span><h2>code.ClusterAna module<a class="headerlink" href="#module-code.ClusterAna" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="code.ClusterAna.ClusterAna">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.ClusterAna.</span></span><span class="sig-name descname"><span class="pre">ClusterAna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">planes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">largeSize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">464</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yref</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">480</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/ClusterAna.html#ClusterAna"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.ClusterAna.ClusterAna" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class ClusterAna produced ROOT histograms for cluster analysis</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="code.ClusterAna.ClusterAna.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/ClusterAna.html#ClusterAna.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.ClusterAna.ClusterAna.check" title="Permalink to this definition"></a></dt>
+<dd><p>Function of internal use. Check if the plane is found</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.ClusterAna.ClusterAna.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">export</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/ClusterAna.html#ClusterAna.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.ClusterAna.ClusterAna.draw" title="Permalink to this definition"></a></dt>
+<dd><p>Draw TCanvas
+:param bool export: if export is True, create 2 png file (ClusterSize.png and LargeClusterProperties.png”)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.ClusterAna.ClusterAna.fill">
+<span class="sig-name descname"><span class="pre">fill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/ClusterAna.html#ClusterAna.fill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.ClusterAna.ClusterAna.fill" title="Permalink to this definition"></a></dt>
+<dd><p>Fill one cluster for a givne plane
+:param int plane: value of 1,2,3 or 4
+:param Cluster cluster: fill a given cluster</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.ClusterAna.ClusterAna.fillMany">
+<span class="sig-name descname"><span class="pre">fillMany</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clusters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/ClusterAna.html#ClusterAna.fillMany"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.ClusterAna.ClusterAna.fillMany" title="Permalink to this definition"></a></dt>
+<dd><p>Fill many clusters for a givne plane
+:param int plane: value of 1,2,3 or 4
+:param list[Clusters] clusters: fill a list of cluster</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.ClusterAna.ClusterAna.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ofilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'clusterAna.root'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/ClusterAna.html#ClusterAna.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.ClusterAna.ClusterAna.write" title="Permalink to this definition"></a></dt>
+<dd><p>Save info in a root file
+:param str ofilename: name of the exported root file</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-code.Maps">
+<span id="code-maps-module"></span><h2>code.Maps module<a class="headerlink" href="#module-code.Maps" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="code.Maps.ClusterMap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.Maps.</span></span><span class="sig-name descname"><span class="pre">ClusterMap</span></span><a class="reference internal" href="_modules/code/Maps.html#ClusterMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Maps.ClusterMap" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="code.Maps.RawMap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.Maps.</span></span><span class="sig-name descname"><span class="pre">RawMap</span></span><a class="reference internal" href="_modules/code/Maps.html#RawMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Maps.RawMap" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Maps.RawMap.fill">
+<span class="sig-name descname"><span class="pre">fill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Maps.html#RawMap.fill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Maps.RawMap.fill" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Maps.RawMap.fillMany">
+<span class="sig-name descname"><span class="pre">fillMany</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Maps.html#RawMap.fillMany"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Maps.RawMap.fillMany" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Maps.RawMap.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Maps.html#RawMap.plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Maps.RawMap.plot" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-code.NoiseAna">
+<span id="code-noiseana-module"></span><h2>code.NoiseAna module<a class="headerlink" href="#module-code.NoiseAna" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.NoiseAna.</span></span><span class="sig-name descname"><span class="pre">NoiseAna</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">planes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noisyThreshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class NoiseAna is using ROOT to perform a noise analysis of SITRINEO sensors</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna.check">
+<span class="sig-name descname"><span class="pre">check</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna.check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna.check" title="Permalink to this definition"></a></dt>
+<dd><p>For internal use</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna.compute" title="Permalink to this definition"></a></dt>
+<dd><p>Method which perform the noise analysis</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna.draw" title="Permalink to this definition"></a></dt>
+<dd><p>Draw ROOT TCanvas</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna.fill">
+<span class="sig-name descname"><span class="pre">fill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna.fill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna.fill" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plane</strong> (<em>int</em>) – plane number</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>,</strong><strong>int</strong><strong>)</strong> – pixel</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna.fillMany">
+<span class="sig-name descname"><span class="pre">fillMany</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixels</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna.fillMany"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna.fillMany" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>plane</strong> (<em>int</em>) – plane number</p></li>
+<li><p><strong>(</strong><strong>int</strong><strong>,</strong><strong>int</strong><strong>)</strong> (<em>list of</em>) – list of pixels</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna.getStats">
+<span class="sig-name descname"><span class="pre">getStats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna.getStats"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna.getStats" title="Permalink to this definition"></a></dt>
+<dd><p>Print some statistical quantities</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ofilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noise.root'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna.write" title="Permalink to this definition"></a></dt>
+<dd><p>Write graphe in a root file
+:param str ofilename: name of the root file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.NoiseAna.NoiseAna.writeNoisy">
+<span class="sig-name descname"><span class="pre">writeNoisy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ofilename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'noisy.txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/NoiseAna.html#NoiseAna.writeNoisy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.NoiseAna.NoiseAna.writeNoisy" title="Permalink to this definition"></a></dt>
+<dd><p>Write a file with the noisy pixels
+The structure will be plane,pixelx,pixely
+:param str ofilename: name of the txt file</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-code.Reader">
+<span id="code-reader-module"></span><h2>code.Reader module<a class="headerlink" href="#module-code.Reader" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="code.Reader.CSVReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">code.Reader.</span></span><span class="sig-name descname"><span class="pre">CSVReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csvfilename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">masking</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maskingFile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'masking.txt'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Reader.html#CSVReader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Reader.CSVReader" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>CSVReader is class dedicated the reading of SITRINEO files formated as evtNb, planeNumber (1,2,3,4), column, line
+<strong>readEvent</strong> is the main method to be used in a loop to read all events in the file
+many accessors are defined to retrive pixels or clusters for a given plane in the current event
+additional accessors are defined to get information about the event or the errors during the reading</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Reader.CSVReader.getClusters">
+<span class="sig-name descname"><span class="pre">getClusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Reader.html#CSVReader.getClusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Reader.CSVReader.getClusters" title="Permalink to this definition"></a></dt>
+<dd><p>List of clusters
+:param int plane: the selected plane (1,2,3,4). -1 means all planes
+:returns: the list of clusters for the selected plane(s)
+:rtype: list of Cluster</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Reader.CSVReader.getEventInfo">
+<span class="sig-name descname"><span class="pre">getEventInfo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Reader.html#CSVReader.getEventInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Reader.CSVReader.getEventInfo" title="Permalink to this definition"></a></dt>
+<dd><p>Print the main event info</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Reader.CSVReader.getEventNb">
+<span class="sig-name descname"><span class="pre">getEventNb</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Reader.html#CSVReader.getEventNb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Reader.CSVReader.getEventNb" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the current event number</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Reader.CSVReader.getPixels">
+<span class="sig-name descname"><span class="pre">getPixels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">plane</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Reader.html#CSVReader.getPixels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Reader.CSVReader.getPixels" title="Permalink to this definition"></a></dt>
+<dd><p>List of pixels
+:param int plane: the selected plane (1,2,3,4). -1 means all planes
+:returns: the list of pixels for the selected plane(s)
+:rtype: list of (int,int)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Reader.CSVReader.readEvent">
+<span class="sig-name descname"><span class="pre">readEvent</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Reader.html#CSVReader.readEvent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Reader.CSVReader.readEvent" title="Permalink to this definition"></a></dt>
+<dd><p>Read the event (all lines related to an event in the csv file
+:returns: True/False (if end of file is finished)
+:rtype: Bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="code.Reader.CSVReader.reportErrors">
+<span class="sig-name descname"><span class="pre">reportErrors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/code/Reader.html#CSVReader.reportErrors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#code.Reader.CSVReader.reportErrors" title="Permalink to this definition"></a></dt>
+<dd><p>Print a report list of categorized issues during the reading of the file</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-code">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-code" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-left" title="code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Eric Chabert.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
