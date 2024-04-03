@@ -8,6 +8,10 @@ It assumes that they are preprocessed by basic TAF functionnalities (in python) 
  - numpy
  - matplotlib
 
+Documentation has been produced with sphinx.It can be found in build/html
+ - pip3 install sphinx
+ - pip3 install sphinx\_rtd\_theme 
+
 ## Functionalities:
  - Read CSV file  - structure: evtNb, plane, pixelx, pixely
  - Create clusters: class Cluster and algo Cluterized
