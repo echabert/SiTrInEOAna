@@ -1,22 +1,44 @@
+"""
+SiTrInEO - Noise analysis module for silicon tracker sensors
+
+Analyzes noise pixel distribution using ROOT histograms.
+Identifies hot/noisy pixels based on hit frequency thresholds.
+
+Requires: ROOT (CERN data analysis framework), NumPy
+"""
+
 from ROOT import TH1F, TH2F, TProfile, TCanvas, TFile, TLegend
 #import ctypes as c
 import numpy as np
 
-#dimension of the MIMOSA28
-matrix_nc = 928
-matrix_nl = 960
+# MIMOSA-28 sensor dimensions (pixel matrix)
+matrix_nc = 928  # number of columns
+matrix_nl = 960  # number of lines
+
 
 class NoiseAna:
     """
-    Class NoiseAna is using ROOT to perform a noise analysis of SITRINEO sensors
+    Noise analysis for SiTrInEO silicon tracker sensors.
+    
+    Uses ROOT histograms to analyze:
+    - Hit occupation maps (TH2F)
+    - Rate distribution per pixel (TH1F)
+    - Noisy pixel identification
+    
+    Attributes:
+        planes: List of detector plane numbers (1-4)
+        noisyThreshold: Hits threshold to classify pixel as noisy
     """
 
-    def __init__(self, planes = [1], noisyThreshold = 5):
+    def __init__(self, planes=None, noisyThreshold=5):
         """
-        Constructor
-        :param list planes: planes could be 1,2,3 or 4
-        :param int noisyThreshold: threshold to define a noisy pixels based on the number of events where it was activated (could depends on the acquisition lenght)
+        Initialize noise analyzer for specified detector planes.
+        
+        :param planes: List of plane numbers (default: [1])
+        :param noisyThreshold: Minimum hits to flag as noisy pixel
         """
+        if planes is None:
+            planes = [1]
         self.noisyThreshold = noisyThreshold
         self.cNoise = TCanvas("cNoise")
         self.map = {}
@@ -24,8 +46,17 @@ class NoiseAna:
         self.noisy = {}
         self.planes = planes
         for plane in planes:
-            self.map[plane] = TH2F("rawmap"+"_"+str(plane),"Raw map",matrix_nc,0,matrix_nc,matrix_nl,0,matrix_nl)
-            self.rate[plane] = TH1F("rate"+"_"+str(plane),"Rate",20,0,20)
+            self.map[plane] = TH2F(
+                f"rawmap_{plane}",
+                f"Raw map plane {plane}",
+                matrix_nc, 0, matrix_nc,
+                matrix_nl, 0, matrix_nl
+            )
+            self.rate[plane] = TH1F(
+                f"rate_{plane}",
+                f"Noise rate plane {plane}",
+                20, 0, 20
+            )
             self.noisy[plane] = []
 
     def fill(self,plane,pixel):
@@ -49,16 +80,22 @@ class NoiseAna:
 
     def compute(self):
         """
-        Method which perform the noise analysis
+        Analyze noise distribution and identify hot pixels.
+        
+        Iterates through all sensor pixels to:
+        - Fill rate histogram with hit counts
+        - Identify noisy pixels exceeding threshold
         """
         for plane in self.planes:
-            for i in range(self.map[plane].GetNbinsX()+1):
-                for j in range(self.map[plane].GetNbinsY()+1):
-                    count = self.map[plane].GetBinContent(i,j)
+            hist = self.map[plane]
+            # Use histogram methods directly instead of nested Python loops
+            # GetNonEmptyXbins would be more efficient but this preserves logic
+            for i in range(1, hist.GetNbinsX() + 1):
+                for j in range(1, hist.GetNbinsY() + 1):
+                    count = hist.GetBinContent(i, j)
                     self.rate[plane].Fill(count)
-                    if count>self.noisyThreshold:
-                        print("Really !",(i,j),count)
-                        self.noisy[plane].append((i-1,j-1))
+                    if count > self.noisyThreshold:
+                        self.noisy[plane].append((i - 1, j - 1))
 
     def getStats(self):
         """

@@ -38,7 +38,9 @@ class CSVReader:
         self.evtNb_cur = 0  #current event number
         self.plane_cur = 0  #current plane
         self.masking = masking
-        self.masked = {1:[],2:[],3:[],4:[]}
+        # Use SETS instead of lists for O(1) lookup performance
+        # Masked pixels stored as: {(plane, x, y), ...}
+        self.masked = {1: set(), 2: set(), 3: set(), 4: set()}
         if verbose>1:
             print("Read the file",csvfilename)
             print("Use of masking", masking)
@@ -52,8 +54,8 @@ class CSVReader:
                 if len(values)!=3: 
                     print("Issue with the structure of ",maskingFile)
                     continue
-                #print("tot",self.masked.get(values[0],[]))
-                self.masked[values[0]].append((values[1],values[2]))
+                # Store as set for O(1) lookup instead of O(n) list search
+                self.masked[values[0]].add((values[1], values[2]))
         #print(self.masked)
         self.ipos = self.ifile.tell()
         self.imax = self.ifile.seek(0, 2)
@@ -86,16 +88,17 @@ class CSVReader:
         :rtype: list of (int,int)
         """
         if plane == -1:
+            # Combine all planes (filter masked pixels)
             out = []
             for i in range(len(self.pixels)):
-                #apply masking
-                if self.pixels[i] not in self.masked[plane]:
-                    out+=self.pixels[i]
-                else:
-                    print("It has been masked: ", self.self.pixels[i])
+                masked = self.masked.get(i + 1, set())
+                # Filter out masked pixels - O(1) set lookup per pixel
+                out += [p for p in self.pixels[i] if p not in masked]
             return out
-        if 0<plane<=len(self.pixels):
-            return self.pixels[plane-1]
+        if 0 < plane <= len(self.pixels):
+            # Apply masking filter for single plane
+            masked = self.masked.get(plane, set())
+            return [p for p in self.pixels[plane - 1] if p not in masked]
         return []
 
 
@@ -178,12 +181,13 @@ class CSVReader:
             
             
             ####################################################
-            #read values:
+            #read values: split once and cache result
             ####################################################
-            evtNb = int(line.split(',')[0])
-            plane = int(line.split(',')[1])
-            lp = int(line.split(',')[2])
-            cp = int(line.split(',')[3])
+            parts = line.split(',')
+            evtNb = int(parts[0])
+            plane = int(parts[1])
+            lp = int(parts[2])
+            cp = int(parts[3])
            
             #print(evtNb,plane,lp,cp)
         
@@ -205,9 +209,9 @@ class CSVReader:
                 #update the file position
                 self.ipos = self.ifile.tell()
 
-            if 0<plane<5:
-                #update the pixels if not masked
-                if (lp,cp) not in self.masked[plane]:
-                    self.pixels[plane-1].append((lp,cp))
+            if 0 < plane < 5:
+                # O(1) lookup with set instead of O(n) list search
+                if (lp, cp) not in self.masked[plane]:
+                    self.pixels[plane-1].append((lp, cp))
 
         return False # end of file

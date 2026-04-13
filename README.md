@@ -4,11 +4,11 @@ Python package to analysis SiTrInEO data produced by the DAQ
 It assumes that they are preprocessed by basic TAF functionnalities (in python) to get CSV files
 
 ## Requirements
- - ROOT ( tested with 6.30/04)
- - numpy
+ - ROOT (tested with 6.30/04)
+ - numpy >= 2.0
  - matplotlib
 
-Documentation has been produced with sphinx.It can be found in build/html
+Documentation has been produced with sphinx. It can be found in build/html
  - pip3 install sphinx
  - pip3 install sphinx\_rtd\_theme 
 

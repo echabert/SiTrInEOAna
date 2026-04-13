@@ -1,26 +1,49 @@
+"""
+SiTrInEO - Cluster analysis module for silicon tracker
+
+Produces ROOT histograms for cluster property analysis including:
+- Size distribution
+- Position dependence (X, Y, R)
+- Large cluster properties (orientation, moments, length)
+
+Requires: ROOT, numpy
+"""
+
 from ROOT import TH1F, TProfile, TCanvas, TFile, TLegend
 import math as m
 from code.Cluster import *
 
+
 class ClusterAna:
     """
-    Class ClusterAna produced ROOT histograms for cluster analysis
+    Cluster analysis producing ROOT histograms for silicon tracker data.
+    
+    Generates:
+    - Cluster size distribution (TH1F)
+    - Size vs position profiles (TProfile)
+    - Large cluster orientation/moments (TH1F)
     """
 
-    def __init__(self, planes = [1], largeSize = 20, xref = 464, yref = 480):
-        """ Constructor
-        :param list[int] planes: list of planes (1,2,3 or 4)
-        :param int largeSize: threshold to define what is a large cluster
-        :param int xref: x-center of sensor plane
-        :param int yref: y-center of the sensor plane
-        Remark: assume that root color plots = plane number
+    def __init__(self, planes=None, largeSize=20, xref=464, yref=480):
         """
+        Initialize cluster analyzer.
+        
+        :param planes: List of plane numbers (default: [1])
+        :param largeSize: Threshold for large cluster analysis
+        :param xref: Reference X coordinate (sensor center)
+        :param yref: Reference Y coordinate (sensor center)
+        Note: ROOT plot colors are set equal to plane number
+        """
+        if planes is None:
+            planes = [1]
         self.largeSize = largeSize
         self.xref = xref
         self.yref = yref
         self.planes = planes
         self.cSize = TCanvas("cSize")
         self.cLarge = TCanvas("cLarge")
+        
+        # Initialize histogram dictionaries
         self.hSize = {}
         self.hSizeVsX = {}
         self.hSizeVsY = {}
@@ -29,68 +52,115 @@ class ClusterAna:
         self.hIxp = {}
         self.hIyp = {}
         self.hLength = {}
+        
         for plane in planes:
-            self.hSize[plane] = TH1F("hSize"+"_"+str(plane),"Cluster size",30,0,30)
-            self.hSizeVsX[plane] = TProfile("hSizeVsX"+"_"+str(plane),"Cluster size as function of x",100,0,500)
-            self.hSizeVsY[plane] = TProfile("hSizeVsY"+"_"+str(plane),"Cluster size as function of y",100,0,500)
-            self.hSizeVsR[plane] = TProfile("hSizeVsR"+"_"+str(plane),"Cluster size as function of r",100,0,450)
-            self.hTheta[plane] = TH1F("hTheta"+"_"+str(plane),"Orientation for clusters >"+str(largeSize)+" pixels",20,-m.pi/4,m.pi/4)
-            self.hIxp[plane] = TH1F("hIxp"+"_"+str(plane),"Moment - x-axis for clusters >"+str(largeSize)+" pixels",50,0,200)
-            self.hIyp[plane] = TH1F("hIyp"+"_"+str(plane),"Moment - y-axis for clusters >"+str(largeSize)+" pixels",50,0,200)
-            self.hLength[plane] = TH1F("hLength"+"_"+str(plane),"Length for clusters >"+str(largeSize)+" pixels",50,0,20)
+            # Size histograms
+            self.hSize[plane] = TH1F(
+                f"hSize_{plane}",
+                f"Cluster size plane {plane}",
+                30, 0, 30
+            )
+            
+            # Position-dependent profiles
+            self.hSizeVsX[plane] = TProfile(
+                f"hSizeVsX_{plane}",
+                f"Cluster size vs X plane {plane}",
+                100, 0, 500
+            )
+            self.hSizeVsY[plane] = TProfile(
+                f"hSizeVsY_{plane}",
+                f"Cluster size vs Y plane {plane}",
+                100, 0, 500
+            )
+            self.hSizeVsR[plane] = TProfile(
+                f"hSizeVsR_{plane}",
+                f"Cluster size vs R plane {plane}",
+                100, 0, 450
+            )
+            
+            # Large cluster properties
+            self.hTheta[plane] = TH1F(
+                f"hTheta_{plane}",
+                f"Orientation plane {plane} (>{largeSize}px)",
+                20, -m.pi/4, m.pi/4
+            )
+            self.hIxp[plane] = TH1F(
+                f"hIxp_{plane}",
+                f"Moment X plane {plane} (>{largeSize}px)",
+                50, 0, 200
+            )
+            self.hIyp[plane] = TH1F(
+                f"hIyp_{plane}",
+                f"Moment Y plane {plane} (>{largeSize}px)",
+                50, 0, 200
+            )
+            self.hLength[plane] = TH1F(
+                f"hLength_{plane}",
+                f"Length plane {plane} (>{largeSize}px)",
+                50, 0, 20
+            )
+            
+            # Set line color by plane number
+            for hist in [self.hSize, self.hSizeVsX, self.hSizeVsY, self.hSizeVsR,
+                       self.hTheta, self.hIxp, self.hIyp, self.hLength]:
+                hist[plane].SetLineColor(plane)
 
-            #set line color
-            self.hSize[plane].SetLineColor(plane)
-            self.hSizeVsX[plane].SetLineColor(plane)
-            self.hSizeVsY[plane].SetLineColor(plane)
-            self.hSizeVsR[plane].SetLineColor(plane)
-            self.hTheta[plane].SetLineColor(plane)
-            self.hIxp[plane].SetLineColor(plane)
-            self.hIyp[plane].SetLineColor(plane)
-            self.hLength[plane].SetLineColor(plane)
-
-    def fill(self,plane, cluster):
+    def fill(self, plane, cluster):
         """
-        Fill one cluster for a givne plane
-        :param int plane: value of 1,2,3 or 4
-        :param Cluster cluster: fill a given cluster
+        Fill histogram with single cluster data.
+        
+        :param plane: Detector plane number (1-4)
+        :param cluster: Cluster object to analyze
+        :returns: True if successful, False if plane invalid
         """
-        if not self.check(plane): return False
+        if not self.check(plane):
+            return False
+        
+        # Basic size info
         self.hSize[plane].Fill(cluster.size())
-        #print(self.hSize[plane].GetEntries(),plane)
-        self.hSizeVsX[plane].Fill(cluster.barycenter[0],cluster.size())
-        self.hSizeVsY[plane].Fill(cluster.barycenter[1],cluster.size())
-        self.hSizeVsR[plane].Fill(distance(cluster.barycenter,(self.xref,self.yref)),cluster.size())
-        #treatment for large clusters
-        if cluster.size()>=self.largeSize:
+        
+        # Position-dependent size
+        bc = cluster.getBarycenter()
+        self.hSizeVsX[plane].Fill(bc[0], cluster.size())
+        self.hSizeVsY[plane].Fill(bc[1], cluster.size())
+        self.hSizeVsR[plane].Fill(distance(bc, (self.xref, self.yref)), cluster.size())
+        
+        # Large cluster properties
+        if cluster.size() >= self.largeSize:
             self.hTheta[plane].Fill(cluster.Theta)
             self.hIxp[plane].Fill(cluster.Ixp)
             self.hIyp[plane].Fill(cluster.Iyp)
             self.hLength[plane].Fill(cluster.length)
+        
         return True
 
     def fillMany(self, plane, clusters):
         """
-        Fill many clusters for a givne plane
-        :param int plane: value of 1,2,3 or 4
-        :param list[Clusters] clusters: fill a list of cluster
+        Fill histograms with multiple clusters.
+        
+        :param plane: Detector plane number
+        :param clusters: List of Cluster objects
+        :returns: True if successful, False if plane invalid
         """
-        if not self.check(plane): return False
+        if not self.check(plane):
+            return False
         for cluster in clusters:
-            self.fill(plane,cluster)
+            self.fill(plane, cluster)
         return True
-
 
     def draw(self, export=False):
         """
-        Draw TCanvas
-        :param bool export: if export is True, create 2 png file (ClusterSize.png and LargeClusterProperties.png")
+        Draw histograms to ROOT canvases.
+        
+        :param export: If True, save as PNG files
+        :returns: Tuple of (size_canvas, large_canvas)
         """
-        self.cSize.Divide(2,2)
-        self.cLarge.Divide(2,2)
+        self.cSize.Divide(2, 2)
+        self.cLarge.Divide(2, 2)
        
         drawOption = ""
         for plane in self.planes:
+            # Size distribution canvas
             self.cSize.cd(1)
             self.hSize[plane].Draw(drawOption)
             self.cSize.cd(2)
@@ -102,6 +172,7 @@ class ClusterAna:
             self.cSize.Update()
             self.cSize.Draw(drawOption)
 
+            # Large cluster canvas
             self.cLarge.cd(1)
             self.hTheta[plane].Draw(drawOption)
             self.cLarge.cd(2)
@@ -116,17 +187,17 @@ class ClusterAna:
     
         if export:
             self.cSize.SaveAs("ClusterSize.png")
-            self.cLarge.SaveAs("LargeCluserProperties.png")
+            self.cLarge.SaveAs("LargeClusterProperties.png")
         
         return self.cSize, self.cLarge
 
-
-    def write(self,ofilename="clusterAna.root"):
+    def write(self, ofilename="clusterAna.root"):
         """
-        Save info in a root file
-        :param str ofilename: name of the exported root file
+        Save histograms to ROOT file.
+        
+        :param ofilename: Output file path
         """
-        rfile = TFile(ofilename,"RECREATE")
+        rfile = TFile(ofilename, "RECREATE")
         rfile.cd()
         for plane in self.planes:
             self.hSize[plane].Write()
@@ -141,11 +212,14 @@ class ClusterAna:
         self.cSize.Write()
         rfile.Close()
 
-    def check(self,plane):
+    def check(self, plane):
         """
-        Function of internal use. Check if the plane is found
+        Validate plane number.
+        
+        :param plane: Plane number to check
+        :returns: True if valid, False otherwise
         """
         if plane not in self.planes:
-            print("this plane number is not found:", plane)
+            print(f"Plane {plane} not in configured planes: {self.planes}")
             return False
         return True
