@@ -1,0 +1,3 @@
+numpy>=2.0
+matplotlib
+# ROOT/PyROOT must be installed separately (not from pip)
