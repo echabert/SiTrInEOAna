@@ -2,7 +2,6 @@ import math as m
 import statistics as stats
 from itertools import groupby
 import matplotlib.pyplot as plt
-import numpy as np
 #from ROOT import TH2F
 from code.Cluster import *
 
